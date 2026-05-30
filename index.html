@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Portafolio Fotográfico | Venta de Fotos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        nav {
+            background: #2c3e50;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        nav ul li {
+            margin: 0 1.5rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #667eea;
+        }
+        
+        .hero {
+            background: url('https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=1200') center/cover;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            padding: 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        section {
+            margin: 3rem 0;
+            padding: 2rem 0;
+        }
+        
+        h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #2c3e50;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .photo-item {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .photo-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .photo-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .photo-info {
+            padding: 1.5rem;
+        }
+        
+        .photo-info h3 {
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+        
+        .photo-info p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        
+        .price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            background: #5568d3;
+        }
+        
+        .about {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 2rem 0;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .about-img {
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .about-img img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+        
+        .contact {
+            background: #2c3e50;
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+        
+        .contact h2 {
+            color: white;
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+        
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        footer {
+            background: #1a252f;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .social-links {
+            margin: 1rem 0;
+        }
+        
+        .social-links a {
+            color: white;
+            margin: 0 1rem;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#galeria">Galería</a></li>
+            <li><a href="#sobre-mi">Sobre Mí</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </nav>
+    
+    <header id="inicio">
+        <div class="hero">
+            <div class="hero-content">
+                <h1>Mi Portafolio Fotográfico</h1>
+                <p>Capturando momentos especiales y paisajes impresionantes. Explora mi trabajo y encuentra la foto perfecta para ti.</p>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <section id="galeria">
+            <h2>Mi Galería de Fotos</h2>
+            <div class="gallery">
+                <div class="photo-item">
+                    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600" alt="Paisaje de montaña">
+                    <div class="photo-info">
+                        <h3>Paisaje de Montaña</h3>
+                        <p>Una vista impresionante de las montañas al amanecer</p>
+                        <div class="price">$50.00</div>
+                        <button class="btn" onclick="comprar('Paisaje de Montaña', 50)">Comprar Esta Foto</button>
+                    </div>
+                </div>
+                
+                <div class="photo-item">
+                    <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=600" alt="Atardecer en el campo">
+                    <div class="photo-info">
+                        <h3>Atardecer en el Campo</h3>
+                        <p>Colores vibrantes del atardecer sobre los campos verdes</p>
+                        <div class="price">$45.00</div>
+                        <button class="btn" onclick="comprar('Atardecer en el Campo', 45)">Comprar Esta Foto</button>
+                    </div>
+                </div>
+                
+                <div class="photo-item">
+                    <img src="https://images.unsplash.com/photo-1447752806738-50152b5293b9?w=600" alt="Bosque místico">
+                    <div class="photo-info">
+                        <h3>Bosque Místico</h3>
+                        <p>Un sendero mágico a través del bosque con luz filtrada</p>
+                        <div class="price">$55.00</div>
+                        <button class="btn" onclick="comprar('Bosque Místico', 55)">Comprar Esta Foto</button>
+                    </div>
+                </div>
+                
+                <div class="photo-item">
+                    <img src="https://images.unsplash.com/photo-1501854140884-074bf86307cd?w=600" alt="Lago alpino">
+                    <div class="photo-info">
+                        <h3>Lago Alpino</h3>
+                        <p>Aguas cristalinas reflejando las montañas nevadas</p>
+                        <div class="price">$60.00</div>
+                        <button class="btn" onclick="comprar('Lago Alpino', 60)">Comprar Esta Foto</button>
+                    </div>
+                </div>
+                
+                <div class="photo-item">
+                    <img src="https://images.unsplash.com/photo-1469474932278-0dffc9fd6812?w=600" alt="Naturaleza silvestre">
+                    <div class="photo-info">
+                        <h3>Naturaleza Silvestre</h3>
+                        <p>La belleza intocada de la naturaleza en su estado puro</p>
+                        <div class="price">$48.00</div>
+                        <button class="btn" onclick="comprar('Naturaleza Silvestre', 48)">Comprar Esta Foto</button>
+                    </div>
+                </div>
+                
+                <div class="photo-item">
+                    <img src="https://images.unsplash.com/photo-1433086960505-9d49d5fde34f?w=600" alt="Cataratas secretas">
+                    <div class="photo-info">
+                        <h3>Cataratas Secretas</h3>
+                        <p>Una catarata oculta en el corazón del bosque</p>
+                        <div class="price">$52.00</div>
+                        <button class="btn" onclick="comprar('Cataratas Secretas', 52)">Comprar Esta Foto</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="sobre-mi">
+            <h2>Sobre Mí</h2>
+            <div class="about">
+                <div class="about-content">
+                    <div class="about-img">
+                        <img src="https://images.unsplash.com/photo-1556155092-490a1ba160a1?w=600" alt="Fotógrafo">
+                    </div>
+                    <div class="about-text">
+                        <h3>Hola, soy [Tu Nombre]</h3>
+                        <p>Soy un fotógrafo apasionado con más de 10 años de experiencia capturando la belleza del mundo natural. Mi trabajo se centra en paisajes, naturaleza y momentos espontáneos que cuentan historias.</p>
+                        <p>Cada foto que tomo es el resultado de horas de planificación, búsqueda del ángulo perfecto y paciencia para capturar el momento exacto. Me especializo en fotografía de paisajes y naturaleza, con un enfoque particular en la luz natural y los colores vibrantes.</p>
+                        <p>Mi objetivo es compartir la belleza que veo en el mundo con otros, ya sea a través de exposiciones, publicaciones o ventas directas de mis fotografías.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="contacto">
+            <h2>Contáctame</h2>
+            <div class="contact">
+                <div class="contact-form">
+                    <form id="form-contacto" onsubmit="enviarFormulario(event)">
+                        <div class="form-group">
+                            <label for="nombre">Nombre:</label>
+                            <input type="text" id="nombre" name="nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="telefono">Teléfono:</label>
+                            <input type="tel" id="telefono" name="telefono">
+                        </div>
+                        <div class="form-group">
+                            <label for="mensaje">Mensaje:</label>
+                            <textarea id="mensaje" name="mensaje" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Enviar Mensaje</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <p>&copy; 2026 Mi Portafolio Fotográfico. Todos los derechos reservados.</p>
+        <div class="social-links">
+            <a href="#">Instagram</a>
+            <a href="#">Facebook</a>
+            <a href="#">Twitter</a>
+            <a href="#">Pinterest</a>
+        </div>
+        <p>¿Interesado en comprar una foto? ¡Contáctame para más información!</p>
+    </footer>
+    
+    <script>
+        function comprar(titulo, precio) {
+            alert("Has seleccionado: " + titulo + "\nPrecio: $" + precio + "\n\nEn una versión real, esto te llevaría a una pasarela de pago como PayPal o Stripe.");
+        }
+        
+        function enviarFormulario(event) {
+            event.preventDefault();
+            const nombre = document.getElementById('nombre').value;
+            alert("Gracias " + nombre + "! Tu mensaje ha sido enviado. Me pondré en contacto contigo pronto.");
+            document.getElementById('form-contacto').reset();
+        }
+        
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
